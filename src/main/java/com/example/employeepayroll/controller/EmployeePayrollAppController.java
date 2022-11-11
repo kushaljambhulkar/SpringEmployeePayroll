@@ -39,7 +39,6 @@ public class EmployeePayrollAppController {
                                             @RequestParam(value = "EnterTheValue")String EnterTheValue){
         return employeePayrollAppService.editEmployeeDetails(id,editOfRowNo,EnterTheValue);
     }
-
     @DeleteMapping(value = "/delete/{id}")
     public void deleteEmployeeInformation(@PathVariable int id){
         employeePayrollAppService.deleteEmployeeDetails(id);
