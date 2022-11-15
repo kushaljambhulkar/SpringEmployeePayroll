@@ -50,9 +50,34 @@ public class EmployeePayrollAppController {
         ResponseDTO responseDTO = new ResponseDTO("Get call Id successfully", updateEmployee);
         return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
     }
-    //    Get Details by its id in the DataBase
+    //Get Details by its id in the DataBase
     @GetMapping("/getall")
     public List<Employee> getAll() {
         return employeePayrollAppService.getAll();
     }
+
+    //For Delete data by its Id
+    @DeleteMapping("delete/{Id}")
+    public List<Employee> deleteBYId(@PathVariable(value = "Id") int Id) {
+        return employeePayrollAppService.deleteById(Id);
+    }
+
+    //For Delete all data
+    @DeleteMapping("/delete-all")
+    public List<Employee> deleteAll() {
+        return employeePayrollAppService.deleteAll();
+    }
+
+    //Count Total employees in database using id
+    @GetMapping("/countInRepo")
+    public String countById() {
+        return employeePayrollAppService.countByIdInRepository();
+    }
+
+    //Count Total employees in saved arraylist
+    @GetMapping("/countInList")
+    public String countIdInSavedList() {
+        return employeePayrollAppService.countIdInSavedList();
+    }
+
 }

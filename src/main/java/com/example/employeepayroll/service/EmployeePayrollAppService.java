@@ -6,8 +6,6 @@ import com.example.employeepayroll.repository.EmployeePayrollAppRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Id;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +15,7 @@ import java.util.Optional;
 public class EmployeePayrollAppService implements EmployeePayrollAppService2 {
     @Autowired
     EmployeePayrollAppRepository employeePayrollAppRepository;
-
+    //Array List to get data by id
     private List<Employee>employeeList = new ArrayList<Employee>();
     public static String printMesseges(){
         return "Hello, Welcome to the Employee Payroll Application";
@@ -43,7 +41,7 @@ public class EmployeePayrollAppService implements EmployeePayrollAppService2 {
         }
         return null;
     }
-
+    //    Update Details In the DataBase Using Setter & Getter Method
     @Override
     public Employee EditDetails(int id, EmployeePayrollAppDTO employeePayrollAppDTO) {
         Employee updateEmployee = employeePayrollAppRepository.findById(id).get();
@@ -65,9 +63,37 @@ public class EmployeePayrollAppService implements EmployeePayrollAppService2 {
     public Optional<Employee> getById(int id) {
         return Optional.ofNullable(employeeList.get(id -1));
     }
-
+    //    Get Details by its id in the DataBase
     @Override
     public List<Employee> getAll() {
         return null;
+    }
+
+    @Override
+    //Delete data by its id
+    public List<Employee> deleteById(int id) {
+        employeePayrollAppRepository.deleteById(id);
+        employeeList.remove(id - 1);
+        return employeePayrollAppRepository.findAll();
+    }
+
+    @Override
+    //Delete all the data in database
+    public List<Employee> deleteAll() {
+        employeeList.clear();
+        employeePayrollAppRepository.deleteAll();
+        return employeePayrollAppRepository.findAll();
+    }
+
+    @Override
+    //Count Total employees in database using id
+    public String countByIdInRepository() {
+        return "Total employees in database are :- " + employeePayrollAppRepository.count();
+    }
+
+    @Override
+    //Count Total employees in database using id
+    public String countIdInSavedList() {
+        return "Number of employees in the List is : " + employeeList.size();
     }
 }
