@@ -16,16 +16,15 @@ public interface EmployeePayrollAppService2 {
 //    Get Details by its id in the DataBase
     Optional<Employee> getById(int id);
     List<Employee> getAll();
-
-    //Delete data by its id
+//  Delete data by its id
     List<Employee> deleteById(int id);
 
-    //Method to delete all the data in database
+//  Method to delete all the data in database
     List<Employee> deleteAll();
 
-    //Count number of employees in database using id
+//  Count number of employees in database using id
     String countByIdInRepository();
 
-    //Count number of employees in database using id
+//  Count number of employees in database using id
     String countIdInSavedList();
 }
