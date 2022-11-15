@@ -1,10 +1,15 @@
 package com.example.employeepayroll.controller;
 
+import com.example.employeepayroll.dto.EmployeePayrollAppDTO;
+import com.example.employeepayroll.dto.ResponseDTO;
 import com.example.employeepayroll.model.Employee;
 import com.example.employeepayroll.service.EmployeePayrollAppService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Id;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,34 +18,41 @@ public class EmployeePayrollAppController {
 //   UC 1 Create a Employee Payroll Spring Project to cater to REST Request
     @Autowired
     EmployeePayrollAppService employeePayrollAppService;
-    @GetMapping("/post")
+    @PostMapping("/post")
     public String post(){
         return EmployeePayrollAppService.printMesseges();
     }
 //    UC2 Create a Rest Controller to demonstrate the various HTTP Methods
     @PostMapping("/insert")
-    public Employee fillEmployeeDetails(@RequestBody Employee employee){
-        return employeePayrollAppService.fillEmployeeDetails(employee);
+    public ResponseEntity<ResponseDTO> addDetails(@RequestBody EmployeePayrollAppDTO employeePayrollAppDTO){
+        Employee employee = employeePayrollAppService.addDetails(employeePayrollAppDTO);
+        ResponseDTO responseDTO = new ResponseDTO("Your Data Added Successfully!!!",employee);
+        return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
     }
 
-    @GetMapping("/get1/{id}")
-    public Optional<Employee> getEmployeeInformation(@PathVariable int id){
-        return employeePayrollAppService.getEmployeeDetails(id);
+    @PutMapping("/update/{Id}")
+    public ResponseEntity<ResponseDTO> updateDetails(@PathVariable int Id,@RequestBody EmployeePayrollAppDTO employeePayrollAppDTO){
+        Employee updateEmployee = employeePayrollAppService.updateDetails(employeePayrollAppDTO);
+        ResponseDTO responseDTO = new ResponseDTO("Employee Data Updated Successfully",updateEmployee);
+        return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
     }
 
-    @GetMapping("/get")
-    public List<Employee> getAllEmployeeInformation(){
-        return employeePayrollAppService.getAllEmployeeDetails();
+    @PutMapping("/edit/{Id}")
+    public ResponseEntity<ResponseDTO> editDetails(@PathVariable int Id,@RequestBody EmployeePayrollAppDTO employeePayrollAppDTO){
+        Employee updateEmployee = employeePayrollAppService.EditDetails(Id,employeePayrollAppDTO);
+        ResponseDTO responseDTO = new ResponseDTO("Employee Data Updated Successfully",updateEmployee);
+        return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
     }
 
-    @PutMapping(value = "/update/{id}")
-    public Employee editEmployeeInformation(@PathVariable int id,
-                                            @RequestParam(value = "editOfRowName")int editOfRowNo,
-                                            @RequestParam(value = "EnterTheValue")String EnterTheValue){
-        return employeePayrollAppService.editEmployeeDetails(id,editOfRowNo,EnterTheValue);
+    @GetMapping("/getId/{Id}")
+    public ResponseEntity<ResponseDTO> getById(@PathVariable(value = "Id") int Id) {
+        Optional<Employee> updateEmployee = employeePayrollAppService.getById(Id);
+        ResponseDTO responseDTO = new ResponseDTO("Get call Id successfully", updateEmployee);
+        return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
     }
-    @DeleteMapping(value = "/delete/{id}")
-    public void deleteEmployeeInformation(@PathVariable int id){
-        employeePayrollAppService.deleteEmployeeDetails(id);
+
+    @GetMapping("/getall")
+    public List<Employee> getAll() {
+        return employeePayrollAppService.getAll();
     }
 }
