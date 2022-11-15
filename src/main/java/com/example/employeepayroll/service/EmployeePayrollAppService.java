@@ -36,7 +36,9 @@ public class EmployeePayrollAppService implements EmployeePayrollAppService2 {
         Optional<Employee> optional = employeePayrollAppRepository.findById(id);
         if(optional.isPresent()){
             Employee updateEmployee = new Employee(id,employeePayrollAppDTO);
+            employeeList.set(id -1,updateEmployee);
             employeePayrollAppRepository.save(updateEmployee);
+            return updateEmployee;
         }
         else {
         }
