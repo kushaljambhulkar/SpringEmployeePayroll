@@ -29,28 +29,28 @@ public class EmployeePayrollAppController {
         ResponseDTO responseDTO = new ResponseDTO("Your Data Added Successfully!!!",employee);
         return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
     }
-
+    //    Adding Details Into DataBase
     @PutMapping("/update/{Id}")
     public ResponseEntity<ResponseDTO> updateDetails(@PathVariable int Id,@RequestBody EmployeePayrollAppDTO employeePayrollAppDTO){
         Employee updateEmployee = employeePayrollAppService.updateDetails(employeePayrollAppDTO);
         ResponseDTO responseDTO = new ResponseDTO("Employee Data Updated Successfully",updateEmployee);
         return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
     }
-
+    //    Edit Details In The DataBse
     @PutMapping("/edit/{Id}")
     public ResponseEntity<ResponseDTO> editDetails(@PathVariable int Id,@RequestBody EmployeePayrollAppDTO employeePayrollAppDTO){
         Employee updateEmployee = employeePayrollAppService.EditDetails(Id,employeePayrollAppDTO);
         ResponseDTO responseDTO = new ResponseDTO("Employee Data Updated Successfully",updateEmployee);
         return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
     }
-
+    // Method to get data by its Id here we use Optional in return because if Id present
     @GetMapping("/getId/{Id}")
     public ResponseEntity<ResponseDTO> getById(@PathVariable(value = "Id") int Id) {
         Optional<Employee> updateEmployee = employeePayrollAppService.getById(Id);
         ResponseDTO responseDTO = new ResponseDTO("Get call Id successfully", updateEmployee);
         return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
     }
-
+    //    Get Details by its id in the DataBase
     @GetMapping("/getall")
     public List<Employee> getAll() {
         return employeePayrollAppService.getAll();
