@@ -1,23 +1,26 @@
 package com.example.employeepayroll.model;
 
+import com.example.employeepayroll.dto.EmployeePayrollAppDTO;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalDate;
 
 @Entity
 public class Employee {
     @Id
     @GeneratedValue
-    private int id;
+    private int Id;
     public String firstName;
     private String lastName;
     private String profilePic;
     private String note;
     private long salary;
-    private String startDate;
+    LocalDate startDate;
 
-    public Employee(int id, String firstName, String lastName, String profilePic, String note, long salary, String startDate) {
-        this.id = id;
+    public Employee(int id, String firstName, String lastName, String profilePic, String note, long salary, LocalDate startDate) {
+        this.Id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.profilePic = profilePic;
@@ -26,16 +29,36 @@ public class Employee {
         this.startDate = startDate;
     }
 
+
     public Employee() {
 
     }
+//    Insert Constructor
+    public Employee(EmployeePayrollAppDTO employeePayrollAppDTO){
+        this.firstName = employeePayrollAppDTO.getLastName();
+        this.lastName = employeePayrollAppDTO.getLastName();
+        this.profilePic = employeePayrollAppDTO.getProfilePic();
+        this.note = employeePayrollAppDTO.getNote();
+        this.salary = employeePayrollAppDTO.getSalary();
+        this.startDate = employeePayrollAppDTO.getStartDate();
+    }
+//    Update Constructor
+    public Employee(int id,EmployeePayrollAppDTO employeePayrollAppDTO){
+        this.Id = id;
+        this.firstName = employeePayrollAppDTO.getLastName();
+        this.lastName = employeePayrollAppDTO.getLastName();
+        this.profilePic = employeePayrollAppDTO.getProfilePic();
+        this.note = employeePayrollAppDTO.getNote();
+        this.salary = employeePayrollAppDTO.getSalary();
+        this.startDate = employeePayrollAppDTO.getStartDate();
+    }
 
     public void setId(int id) {
-        this.id = id;
+        this.Id = id;
     }
 
     public int getId() {
-        return id;
+        return Id;
     }
 
     public void setFirstName(String firstName) {
@@ -78,24 +101,12 @@ public class Employee {
         return salary;
     }
 
-    public String getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", profilePic='" + profilePic + '\'' +
-                ", note='" + note + '\'' +
-                ", salary=" + salary +
-                ", startDate=" + startDate +
-                '}';
-    }
 }
