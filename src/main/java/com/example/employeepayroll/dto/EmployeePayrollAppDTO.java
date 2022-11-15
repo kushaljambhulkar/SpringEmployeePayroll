@@ -12,6 +12,7 @@ public class EmployeePayrollAppDTO {
 
     public EmployeePayrollAppDTO(String firstName,String lastName, String profilePic,
                                  String note, long salary, LocalDate startDate) {
+        super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.profilePic = profilePic;
@@ -77,5 +78,5 @@ public class EmployeePayrollAppDTO {
                 ", salary=" + salary +
                 ", startDate=" + startDate +
                 '}';
-        }
     }
+}

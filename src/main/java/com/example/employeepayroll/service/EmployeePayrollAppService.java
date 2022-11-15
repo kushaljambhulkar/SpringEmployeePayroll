@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 //   UC 1 Create a Employee Payroll Spring Project to cater to REST Request
 @Service
 public class EmployeePayrollAppService implements EmployeePayrollAppService2 {
@@ -20,6 +19,7 @@ public class EmployeePayrollAppService implements EmployeePayrollAppService2 {
     public static String printMesseges(){
         return "Hello, Welcome to the Employee Payroll Application";
     }
+
     //    Add Details Into DataBase
     @Override
     public Employee addDetails(EmployeePayrollAppDTO employeePayrollAppDTO){
@@ -28,6 +28,7 @@ public class EmployeePayrollAppService implements EmployeePayrollAppService2 {
         employeePayrollAppRepository.save(EmployeeDetails);
         return EmployeeDetails;
     }
+
     //    Edit Details In The DataBse
     @Override
     public Employee updateDetails(EmployeePayrollAppDTO employeePayrollAppDTO) {
@@ -41,6 +42,7 @@ public class EmployeePayrollAppService implements EmployeePayrollAppService2 {
         }
         return null;
     }
+
     //    Update Details In the DataBase Using Setter & Getter Method
     @Override
     public Employee EditDetails(int id, EmployeePayrollAppDTO employeePayrollAppDTO) {
@@ -63,6 +65,7 @@ public class EmployeePayrollAppService implements EmployeePayrollAppService2 {
     public Optional<Employee> getById(int id) {
         return Optional.ofNullable(employeeList.get(id -1));
     }
+
     //    Get Details by its id in the DataBase
     @Override
     public List<Employee> getAll() {
