@@ -1,5 +1,9 @@
 package com.example.employeepayroll.dto;
 
+
+import lombok.Data;
+
+@Data
 public class ResponseDTO {
     private String message;
     private Object Employee;
@@ -9,19 +13,4 @@ public class ResponseDTO {
         this.Employee = employee;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Object getEmployee() {
-        return Employee;
-    }
-
-    public void setEmployee(Object employee) {
-        Employee = employee;
-    }
 }
