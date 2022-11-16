@@ -22,4 +22,12 @@ public class EmployeePayrollExceptionHandler {
         ResponseDTO responseDTO = new ResponseDTO("Exception while processing Rest Request", errMsg);
         return new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
     }
+
+    //This method is used to handle the custom exception while getting the employee id and print the message
+    @ExceptionHandler(EmployeePayrollException.class)
+    public ResponseEntity<ResponseDTO> handleEmployeePayrollException(EmployeePayrollException exception) {
+        ResponseDTO responseDTO = new ResponseDTO("Exception while processing Rest Request"
+                , exception.getMessage());
+        return new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
+    }
 }
