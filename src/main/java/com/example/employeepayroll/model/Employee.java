@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 public class Employee {
     @Id
     @GeneratedValue
