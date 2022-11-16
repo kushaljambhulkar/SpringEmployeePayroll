@@ -45,6 +45,7 @@ public class EmployeePayrollAppController {
         return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
     }
     // Method to get data by its Id here we use Optional in return because if Id present
+    // then it return data otherwise return null
     @GetMapping("/getId/{Id}")
     public ResponseEntity<ResponseDTO> getById(@PathVariable(value = "Id") int Id) {
         Optional<Employee> updateEmployee = employeePayrollAppService.getById(Id);

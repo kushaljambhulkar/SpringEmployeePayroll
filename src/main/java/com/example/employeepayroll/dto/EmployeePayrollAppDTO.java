@@ -13,7 +13,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmployeePayrollAppDTO {
-
+    //Using @Data is equivalent to using @code @Getter @Setter @RequiredArgsConstructor @ToString @EqualsAndHashCode
+    //Using various annotations like @pattern @min to put validations on the class
     @NotEmpty(message = "Employee First name is mandatory")
     @Pattern(regexp = "^[A-Z]{1}[a-zA-Z]{2,}$", message = "Employee First Name Invalid")
     public String firstName;
