@@ -9,11 +9,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Id;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/employeepayroll")
 public class EmployeePayrollAppController {
 //   UC 1 Create a Employee Payroll Spring Project to cater to REST Request
     @Autowired
@@ -24,7 +25,7 @@ public class EmployeePayrollAppController {
     }
 //    UC2 Create a Rest Controller to demonstrate the various HTTP Methods
     @PostMapping("/insert")
-    public ResponseEntity<ResponseDTO> addDetails(@RequestBody EmployeePayrollAppDTO employeePayrollAppDTO){
+    public ResponseEntity<ResponseDTO> addDetails(@Valid @RequestBody EmployeePayrollAppDTO employeePayrollAppDTO){
         Employee employee = employeePayrollAppService.addDetails(employeePayrollAppDTO);
         ResponseDTO responseDTO = new ResponseDTO("Your Data Added Successfully!!!",employee);
         return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);

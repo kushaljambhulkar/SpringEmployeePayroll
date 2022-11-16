@@ -50,12 +50,13 @@ public class EmployeePayrollAppService implements EmployeePayrollAppService2 {
     public Employee EditDetails(int id, EmployeePayrollAppDTO employeePayrollAppDTO) {
         Employee updateEmployee = employeePayrollAppRepository.findById(id).get();
         if(employeePayrollAppRepository.findById(id).isPresent()){
-            updateEmployee.setFirstName(employeePayrollAppDTO.getFirstname());
+            updateEmployee.setFirstName(employeePayrollAppDTO.getFirstName());
             updateEmployee.setLastName(employeePayrollAppDTO.getLastName());
             updateEmployee.setProfilePic(employeePayrollAppDTO.getProfilePic());
             updateEmployee.setSalary(employeePayrollAppDTO.getSalary());
             updateEmployee.setNote(employeePayrollAppDTO.getNote());
             updateEmployee.setStartDate(employeePayrollAppDTO.getStartDate());
+            employeeList.set(id -1,updateEmployee);
             employeePayrollAppRepository.save(updateEmployee);
             return updateEmployee;
         }else {

@@ -1,82 +1,44 @@
 package com.example.employeepayroll.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
+@Data
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class EmployeePayrollAppDTO {
+
+    @NotEmpty(message = "Employee First name is mandatory")
+    @Pattern(regexp = "^[A-Z]{1}[a-zA-Z]{2,}$", message = "Employee First Name Invalid")
     public String firstName;
+
+
+    @NotNull(message = "Employee Last name is mandatory")
+    @Pattern(regexp = "^[A-Z]{1}[a-zA-Z]{2,}$", message = "Employee Last Name Invalid")
     public String lastName;
-    private String profilePic;
+
+
+    @NotBlank
+    public String profilePic;
+
+    @NotEmpty(message = "Notes is mandatory")
     private String note;
-    private long salary;
-    LocalDate startDate;
 
-    public EmployeePayrollAppDTO(String firstName,String lastName, String profilePic,
-                                 String note, long salary, LocalDate startDate) {
-        super();
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.profilePic = profilePic;
-        this.note = note;
-        this.salary = salary;
-        this.startDate = startDate;
-    }
 
-    public String getFirstname() {
-        return firstName;
-    }
+//    @FutureOrPresent
 
-    public void setFirstname(String firstname) {
-        this.firstName= firstname;
-    }
 
-    public String getLastName() {
-        return lastName;
-    }
+    @NotNull
+    @Min(value = 5000000, message = "Minimum wage should be more than 50 lac")
+    private Long salary;
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+//    @NotEmpty(message = "Start Date is mandatory")
+    private LocalDate startDate;
 
-    public String getProfilePic() {
-        return profilePic;
-    }
-
-    public void setProfilePic(String profilePic) {
-        this.profilePic = profilePic;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-
-    public long getSalary() {
-        return salary;
-    }
-
-    public void setSalary(long salary) {
-        this.salary = salary;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-    @Override
-    public String toString() {
-        return "EmployeePayrollAppDTO{"+
-                ", firstName='" + firstName+ '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", profilePic='" + profilePic + '\'' +
-                ", note='" + note + '\'' +
-                ", salary=" + salary +
-                ", startDate=" + startDate +
-                '}';
-    }
 }
