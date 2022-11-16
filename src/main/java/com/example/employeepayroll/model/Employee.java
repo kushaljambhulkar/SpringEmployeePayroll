@@ -13,7 +13,6 @@ import java.time.LocalDate;
 @Entity
 @Data
 @NoArgsConstructor
-//@AllArgsConstructor
 public class Employee {
     @Id
     @GeneratedValue
@@ -25,20 +24,6 @@ public class Employee {
     private long salary;
     LocalDate startDate;
 
-//    public Employee(int id, String firstName, String lastName, String profilePic, String note, long salary, LocalDate startDate) {
-//        this.Id = id;
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.profilePic = profilePic;
-//        this.note = note;
-//        this.salary = salary;
-//        this.startDate = startDate;
-//    }
-
-
-//    public Employee() {
-//
-//    }
 //    Insert Constructor
     public Employee(EmployeePayrollAppDTO employeePayrollAppDTO){
         this.firstName = employeePayrollAppDTO.getLastName();
